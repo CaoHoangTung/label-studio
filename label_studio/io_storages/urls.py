@@ -1,5 +1,6 @@
 """This file and its contents are licensed under the Apache License 2.0. Please see the included NOTICE for copyright information and LICENSE for a copy of the license.
 """
+import os
 from django.urls import path, include
 
 from .s3.api import *
@@ -97,3 +98,24 @@ if settings.ENABLE_LOCAL_FILES_STORAGE:
 urlpatterns = [
     path('api/storages/', include((_api_urlpatterns, app_name), namespace='api')),
 ]
+
+# data_path = os.environ.get('LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT')
+# if data_path is None:
+#     data_path = '/label-studio/data/storage/input'
+# else:
+#     data_path = os.path.join(data_path, 'storage\input')
+
+# import_storage_list_api = LocalFilesImportStorageListAPI()
+# import_storage_list_api.request = None
+# import_storage_list_api.format_kwarg = None
+# serializer = import_storage_list_api.get_serializer(
+#     data={
+#         'project': '7',
+#         'title': 'Input storage',
+#         'regex_filter': '.*(MOV|mov|MP4|mp4|CSV|csv)',
+#         'path': data_path,
+#         'use_blob_urls': False
+#     }
+# )
+# serializer.is_valid()
+# import_storage_list_api.perform_create(serializer)
